@@ -16,7 +16,7 @@ class CreateDescTable extends Migration
         Schema::create('descs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('desc');
+            $table->string('desc');
             $table->timestamps();
         });
     }
