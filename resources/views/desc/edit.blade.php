@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+
 
 <main class="show" style="margin:50px 50px 50px 50px;">
     <h1>Edit Description</h1>
@@ -45,4 +45,3 @@
     </form>
 </main>
 
-@endsection

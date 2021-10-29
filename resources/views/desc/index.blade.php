@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@extends('layouts.nav')
 
-@section('content')
 
 <main class="show" style="margin:50px 50px 50px 50px;">
     <h1>Description List</h1>
@@ -36,4 +36,3 @@
     {{ $desc->links()}}
 </main>
 
-@endsection
