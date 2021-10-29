@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@extends('layouts.nav')
 
 
 <main class="show" style="margin:50px 50px 50px 50px;">
