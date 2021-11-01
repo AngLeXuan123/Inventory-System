@@ -26,26 +26,24 @@
                                 <div class="col-lg-5">
                                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                                         <div class="card-header">
-                                            <h3 class="text-center font-weight-bold my-4">Edit Description</h3>
+                                            <h3 class="text-center font-weight-bold my-4">Edit User</h3>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" action="{{route('desc.update',$descs->id)}}">
+                                            <form action="{{route('user.update',$user->id)}}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <label for="email"
-                                                    class="col-md-4 col-form-label text-md-right"><b>Title</b></label>
+                                                    class="col-md-4 col-form-label text-md-right"><b>Name</b></label>
 
-                                                <input type="text" name="title" class="form-control"
-                                                    value="{{$descs->title}}">
+                                                    <input type="text" name="name" class="form-control" value="{{$user->name}}">
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
                                                 <label for="password"
-                                                    class="col-md-4 col-form-label text-md-right"><b>Description</b></label>
-                                                <textarea class="form-control" style="height:150px" name="desc"
-                                                    value="Description">{{$descs->desc}}</textarea>
+                                                    class="col-md-4 col-form-label text-md-right"><b>Email</b></label>
+                                                    <input class="form-control" type="email" name="email" value="{{$user->email}}">
 
                                                 @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +55,7 @@
                                                     <button type="submit" class="btn btn-primary">
                                                         Update
                                                     </button>
-                                                    <a href="{{route('desc.index')}}">Back to Description List.</a>
+                                                    <a href="{{route('user.index')}}">Back to User List.</a>
                                                 </div>
                                             </form>
                                         </div>

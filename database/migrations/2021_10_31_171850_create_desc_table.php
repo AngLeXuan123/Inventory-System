@@ -15,9 +15,11 @@ class CreateDescTable extends Migration
     {
         Schema::create('descs', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('desc');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');  
         });
     }
 

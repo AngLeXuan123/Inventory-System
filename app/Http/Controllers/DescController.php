@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Desc;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Session;
 
 class DescController extends Controller
@@ -21,8 +23,8 @@ class DescController extends Controller
      */
     public function index()
     {
-        $desc = Desc::latest()->paginate(5);
-        return view('desc.index',compact('desc'))
+        $descs = Desc::latest()->paginate(10);
+        return view('desc.index',compact('descs'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
@@ -51,11 +53,16 @@ class DescController extends Controller
         ]);
         
         //store created task into database
-          
-        Desc::create($request->all());
-        Session::flash('flash_message','Description is successfully created!');
-        return redirect()->route('desc.index');
-          
+        
+        $descs = new Desc();
+        $descs -> title = $request -> title;
+        $descs -> desc = $request -> desc;
+
+        if(Auth::user() -> desc() -> save($descs)){
+            Session::flash('flash_message','Description is successfully created!');
+            return redirect()->route('desc.index');
+        }
+
     }
 
     /**
