@@ -31,12 +31,12 @@
                                             </div>
                                             @endif
                                             
-                                            <label for="email"
+                                            <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Title</b></label>
 
                                             <input type="text" name="title" class="form-control" placeholder="Title">
 
-                                            <label for="password"
+                                            <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Description</b></label>
                                             <textarea class="form-control" style="height:150px" name="desc"
                                                 placeholder="Description"></textarea>

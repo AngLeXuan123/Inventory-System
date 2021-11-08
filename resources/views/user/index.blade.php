@@ -46,9 +46,9 @@
                         </tr>
                     </tfoot>
 
-                   
+
                     <tbody>
-                    @foreach($user as $users)
+                        @foreach($user as $users)
                         <tr>
                             <td>{{ $users->name }}</td>
                             <td>{{ $users->email}}</td>
@@ -63,8 +63,15 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{('Total User:')}} {{$users -> count()}}
                 {{$user -> links()}}
             </div>
         </div>
     </div>
+    <select id="desc" name="title" class="select">
+        @foreach($descs as $desc1)
+        <option value="{{$desc1}}">{{$desc1}}</option>
+        @endforeach
+
+    </select>
 </main>

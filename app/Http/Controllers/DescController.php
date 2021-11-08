@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Desc;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Desc;
 use App\Http\Controllers\Controller;
 use Session;
 
@@ -23,7 +23,7 @@ class DescController extends Controller
      */
     public function index()
     {
-        $descs = Desc::latest()->paginate(10);
+        $descs = Desc::latest()->paginate(5);
         return view('desc.index',compact('descs'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
         
@@ -48,8 +48,8 @@ class DescController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title' => 'required',
-            'desc' => 'required',
+            'title' => 'required|alpha',
+            'desc' => 'required|alpha',
         ]);
         
         //store created task into database

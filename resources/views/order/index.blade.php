@@ -15,44 +15,56 @@
     @endif
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Description List</h1>
+        <h1 class="mt-4">Order List</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Descriptions</li>
+            <li class="breadcrumb-item active">Orders</li>
         </ol>
-        <p class="lead">All your description.<a href="{{ route('desc.create') }}">Add a new one?</a></p>
+        <p class="lead">All Orders Made.<a href="{{ route('order.create') }}">Add a new one?</a></p>
 
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Description List
+                Order List
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Description</th>
+                            <th>Customer Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Total Amount</th>
                             <th>Operation</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Title</th>
-                            <th>Description</th>
+                            <th>Customer Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Total Amount</th>
                             <th>Operation</th>
                         </tr>
                     </tfoot>
 
                     <tbody>
-                        @foreach($descs as $desc1)
+                        @foreach($order as $orders)
                         <tr>
-                            <td>{{ $desc1->title}}</td>
-                            <td>{{ $desc1->desc}}</td>
+                            <td>{{$orders->custName}}</td>
+                            <td>{{$orders->address}}</td>
+                            <td>{{$orders->phoneNum}}</td>
+                            <td>{{$orders->prodName}}</td>
+                            <td>{{$orders->quantity}}</td>
+                            <td>{{$orders->tAmount}}</td>
                             <td>
-                                <form action="{{route('desc.destroy', $desc1->id)}}" method="POST">
-                                    <a href="{{ route('desc.show', $desc1->id) }}" class="btn btn-info">View Task</a>
-                                    <a href="{{ route('desc.edit', $desc1->id) }}" class="btn btn-primary">Edit Task</a>
+                                <form action="{{route('order.destroy', $orders->id)}}" method="POST">
+                                    <a href="{{ route('order.edit', $orders->id) }}" class="btn btn-primary">Edit
+                                        Task</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -62,8 +74,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{('Total Description:')}} {{$descs -> count()}}
-                {{$descs -> links()}}
+                {{('Total Orders:')}} {{$order -> count()}}
+                {{$order -> links()}}
             </div>
         </div>
     </div>

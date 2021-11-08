@@ -15,44 +15,41 @@
     @endif
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Description List</h1>
+        <h1 class="mt-4">Category List</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Descriptions</li>
+            <li class="breadcrumb-item active">Categories</li>
         </ol>
-        <p class="lead">All your description.<a href="{{ route('desc.create') }}">Add a new one?</a></p>
+        <p class="lead">All Category available.<a href="{{ route('category.create') }}">Add a new one?</a></p>
 
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Description List
+                Category List
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Description</th>
+                            <th>Category</th>
                             <th>Operation</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Title</th>
-                            <th>Description</th>
+                            <th>Category</th>
                             <th>Operation</th>
                         </tr>
                     </tfoot>
 
                     <tbody>
-                        @foreach($descs as $desc1)
+                        @foreach($cat as $cats)
                         <tr>
-                            <td>{{ $desc1->title}}</td>
-                            <td>{{ $desc1->desc}}</td>
+                            <td>{{$cats->Category}}</td>
                             <td>
-                                <form action="{{route('desc.destroy', $desc1->id)}}" method="POST">
-                                    <a href="{{ route('desc.show', $desc1->id) }}" class="btn btn-info">View Task</a>
-                                    <a href="{{ route('desc.edit', $desc1->id) }}" class="btn btn-primary">Edit Task</a>
+                                <form action="{{route('category.destroy', $cats->id)}}" method="POST">
+                                    <a href="{{ route('category.edit', $cats->id) }}" class="btn btn-primary">Edit
+                                        Category</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -62,8 +59,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{('Total Description:')}} {{$descs -> count()}}
-                {{$descs -> links()}}
+                {{('Total Category:')}} {{$cat->count()}}
+                {{$cat -> links()}}
             </div>
         </div>
     </div>

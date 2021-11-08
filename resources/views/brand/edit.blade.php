@@ -12,10 +12,10 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header">
-                                        <h3 class="text-center font-weight-bold my-4">Edit Description</h3>
+                                        <h3 class="text-center font-weight-bold my-4">Edit Brand</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form method="post" action="{{route('desc.update',$descs->id)}}">
+                                        <form method="post" action="{{route('brand.update',$brand->id)}}">
                                             @csrf
                                             @method('PUT')
                                             @if(Session::has('flash_message'))
@@ -32,21 +32,16 @@
                                             </div>
                                             @endif
                                             <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Title</b></label>
+                                                class="col-md-4 col-form-label text-md-right"><b>brand</b></label>
 
-                                            <input type="text" name="title" class="form-control"
-                                                value="{{$descs->title}}">
-
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Description</b></label>
-                                            <textarea class="form-control" style="height:150px" name="desc"
-                                                value="Description">{{$descs->desc}}</textarea>
+                                            <input type="text" name="brand" class="form-control"
+                                                value="{{$brand->brand}}">
 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button type="submit" class="btn btn-primary">
                                                     Update
                                                 </button>
-                                                <a href="{{route('desc.index')}}">Back to Description List.</a>
+                                                <a href="{{route('brand.index')}}">Back to Brand List.</a>
                                             </div>
                                         </form>
                                     </div>

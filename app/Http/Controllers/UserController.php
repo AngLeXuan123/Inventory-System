@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Desc;
 use App\Http\Controllers\Controller;
+
 use Session;
 
 class UserController extends Controller
@@ -23,7 +25,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->paginate(5);
-        return view('user.index',compact('user'))
+		$descs = Desc::pluck('title','id');
+        return view('user.index',compact('user','descs'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -62,7 +65,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $this->validate($request,[
-            'name' => 'required',
+            'name' => 'required|alpha',
             'email' => 'required',
         ]);
         
