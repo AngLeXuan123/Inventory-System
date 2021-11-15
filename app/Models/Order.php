@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $table = 'orders';
+
+    public $primaryKey = 'id';
+
     protected $guarded = [];
 
-    protected $casts = [
-        'data' => 'array',
-    ];
+    public function orderItems(){
+        return $this->hasMany('App\Models\OrderItem','order_id');
+    }
+
     
-    public function product()
-    {
-        return $this->hasMany(Product::class);
-    }  
 }

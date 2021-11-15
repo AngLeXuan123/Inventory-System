@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\InvoiceController;
 
 
 
@@ -34,6 +35,15 @@ Route::resource('brand', BrandController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
 Route::resource('order', OrderController::class);
+
+//invoice route
+Route::get('generate-invoice/{order_id}', [App\Http\Controllers\OrderController::class, 'invoice']);
+
+
+
+
+
+//Route::get('invoice','InvoiceController@index');
 
 
 

@@ -86,8 +86,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prod = Product::find($id);
-
+        
         $this->validate($request,[
             'prodName' => 'required|regex:/^[\pL\s\-]+$/u',
             'size' => 'required',
@@ -97,6 +96,7 @@ class ProductController extends Controller
             'price' => 'required',
         ]);
 
+        $prod = Product::find($id);
         $newInput = $request->all();
         $prod->update($newInput);
 

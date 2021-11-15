@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 <main>
     @if(Session::has('flash_message'))
@@ -34,8 +35,7 @@
                             <th>Customer Name</th>
                             <th>Address</th>
                             <th>Phone Number</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
+                            <th>Total Item</th>
                             <th>Total Amount</th>
                             <th>Operation</th>
                         </tr>
@@ -45,8 +45,7 @@
                             <th>Customer Name</th>
                             <th>Address</th>
                             <th>Phone Number</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
+                            <th>Total Item</th>
                             <th>Total Amount</th>
                             <th>Operation</th>
                         </tr>
@@ -58,16 +57,15 @@
                             <td>{{$orders->custName}}</td>
                             <td>{{$orders->address}}</td>
                             <td>{{$orders->phoneNum}}</td>
-                            <td>{{$orders->prodName}}</td>
-                            <td>{{$orders->quantity}}</td>
-                            <td>{{$orders->tAmount}}</td>
+                            <td>{{$orders->orderItems->count('product_id')}}</td>
+                            <td>RM{{$orders->orderItems->sum('tAmount')}}</td>
                             <td>
                                 <form action="{{route('order.destroy', $orders->id)}}" method="POST">
-                                    <a href="{{ route('order.edit', $orders->id) }}" class="btn btn-primary">Edit
-                                        Task</a>
+                                    <a class="btn btn-primary" href="{{ route('order.edit', $orders->id) }}"><i class="fas fa-edit"></i></a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                    <a class="btn btn-success" href="{{ url('generate-invoice',$orders->id) }}"><i class="fas fa-file-invoice"></i></a>
                                 </form>
                             </td>
                         </tr>

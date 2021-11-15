@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Session;
@@ -21,7 +22,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::latest()->paginate(5);
+        $brand = Brand::where('user_id','=',Auth::user()->id)->paginate(5);
         return view('brand.index', compact('brand'))
         ->with('i', (request()->input('page',1) - 1) * 5);
     }

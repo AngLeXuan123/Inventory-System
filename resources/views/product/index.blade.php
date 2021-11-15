@@ -31,7 +31,7 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Prodcut Name</th>
+                            <th>Product Name</th>
                             <th>Size</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -42,7 +42,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Prodcut Name</th>
+                            <th>Product Name</th>
                             <th>Size</th>
                             <th>Price</th>
                             <th>Quantity</th>

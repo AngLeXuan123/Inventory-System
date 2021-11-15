@@ -10,7 +10,6 @@ use Session;
 
 class DescController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +22,7 @@ class DescController extends Controller
      */
     public function index()
     {
+        //$descs = Desc::where('user_id','=',Auth::user()->id)->paginate(5);
         $descs = Desc::latest()->paginate(5);
         return view('desc.index',compact('descs'))
         ->with('i', (request()->input('page', 1) - 1) * 5);

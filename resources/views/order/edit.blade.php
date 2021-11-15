@@ -49,23 +49,32 @@
                                             <input type="text" name="phoneNum" class="form-control"
                                                 value="{{$order->phoneNum}}">
 
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Product Name</b></label>
-
-                                            <input type="text" name="prodName" class="form-control"
-                                                value="{{$order->prodName}}">
-
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Quantity</b></label>
-
-                                            <input type="text" name="quantity" class="form-control"
-                                                value="{{$order->quantity}}">
-
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Total Amount</b></label>
-
-                                            <input type="text" name="tAmount" class="form-control"
-                                                value="{{$order->tAmount}}">
+                                                <table class="table table-bordered">
+                                                <thead>
+                                                    <th>Product Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total Amount</th>
+                                                </thead>
+</br>
+                                                <tbody>
+                                                    @foreach($orderItems as $value)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="product_id[]"
+                                                                    class="form-control" placeholder="Product Name" value="{{$value->product->prodName}}" readonly>
+                                                        </td> 
+                                                        <td>
+                                                            <input type="text" name="order_quantity[]"
+                                                                class="form-control" placeholder="Quantity" value="{{$value->order_quantity}}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="tAmount[]" class="form-control"
+                                                                placeholder="Total Amount" value="{{$value->tAmount}}">
+                                                        </td>  
+                                                    </tr>
+                                                 @endforeach
+                                                </tbody>
+                                            </table>
 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button type="submit" class="btn btn-primary">
