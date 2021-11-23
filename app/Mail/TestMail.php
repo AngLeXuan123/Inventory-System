@@ -17,7 +17,7 @@ class TestMail extends Mailable
      *
      * @return void
      */
-    public function __construct($detail, $cash)
+    public function __construct($detail)
     {
         $this->detail = $detail;
     }

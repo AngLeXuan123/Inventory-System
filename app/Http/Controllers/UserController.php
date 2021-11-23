@@ -25,8 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->paginate(5);
-		$descs = Desc::pluck('title','id');
-        return view('user.index',compact('user','descs'))
+        return view('user.index',compact('user'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -65,7 +64,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $this->validate($request,[
-            'name' => 'required|alpha',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required',
         ]);
         

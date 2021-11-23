@@ -60,8 +60,6 @@ class PaymentTokensController extends Controller
             "description" => "",
         ]);
 
-
-   
         Session::flash('success', 'Payment successful!');
            
         return back();

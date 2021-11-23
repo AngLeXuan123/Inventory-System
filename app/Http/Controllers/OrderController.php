@@ -67,7 +67,7 @@ class OrderController extends Controller
     {
         $this->validate($request,[
             'product_id' => 'required',
-            'custName' => 'required|alpha',
+            'custName' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email',
             'address' => 'required',
             'phoneNum' => 'required|regex:/[0-9]{10}/',
@@ -150,7 +150,7 @@ class OrderController extends Controller
         
         $this->validate($request,[
             'product_id' => 'required',
-            'custName' => 'required|alpha',
+            'custName' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email',
             'address' => 'required',
             'phoneNum' => 'required|regex:/[0-9]{10}/',
@@ -214,7 +214,4 @@ class OrderController extends Controller
         return $pdf->download('SB Engineering.pdf');
        
     }
-    
-
-
 }

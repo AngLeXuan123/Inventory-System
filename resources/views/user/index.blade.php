@@ -68,10 +68,4 @@
             </div>
         </div>
     </div>
-    <select id="desc" name="title" class="select">
-        @foreach($descs as $desc1)
-        <option value="{{$desc1}}">{{$desc1}}</option>
-        @endforeach
-
-    </select>
 </main>
