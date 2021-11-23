@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaymentTokensController;
 
 
 
@@ -39,11 +40,14 @@ Route::resource('order', OrderController::class);
 //invoice route
 Route::get('generate-invoice/{order_id}', [App\Http\Controllers\OrderController::class, 'invoice']);
 
+//stripe & payment form
+Route::get('paymentForm', [PaymentTokensController::class, 'payment_form']);
+
+Route::post('stripe/{order_id}', [PaymentTokensController::class, 'stripePost'])->name('stripe.post');
 
 
 
 
-//Route::get('invoice','InvoiceController@index');
 
 
 

@@ -39,6 +39,12 @@
                                             <input type="text" name="custName" class="form-control"
                                                 placeholder="Full Name">
 
+                                            <label for="" class="col-md-4 col-form-label text-md-right"><b>Customer
+                                                    Email</b></label>
+
+                                            <input type="text" name="email" class="form-control"
+                                                placeholder="Email">
+
                                             <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Address</b></label>
 

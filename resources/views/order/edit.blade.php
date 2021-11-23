@@ -38,6 +38,12 @@
                                                 value="{{$order->custName}}">
 
                                             <label for=""
+                                                class="col-md-4 col-form-label text-md-right"><b>Customer Email</b></label>
+
+                                            <input type="text" name="email" class="form-control"
+                                                value="{{$order->email}}">
+
+                                            <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Address</b></label>
 
                                             <input type="text" name="address" class="form-control"

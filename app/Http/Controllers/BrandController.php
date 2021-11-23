@@ -22,7 +22,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::where('user_id','=',Auth::user()->id)->paginate(5);
+        $brand = Brand::latest()->paginate(5);
         return view('brand.index', compact('brand'))
         ->with('i', (request()->input('page',1) - 1) * 5);
     }

@@ -116,11 +116,12 @@
         <div class="body-section">
             <div class="">
                 <div class="">
-                    <h2 class="heading">Invoice No.: {{$order->id}}</h2>
+                    <h2 class="heading">Invoice No: {{$order->invoice_id}}</h2>
                     <p class="sub-heading">Order Date: {{$order->created_at->format('d-m-y')}}</p>
                 </div>
                 <div class="">
                     <p class="sub-heading">Full Name: {{$order->custName}} </p>
+                    <p class="sub-heading">Email: {{$order->email}} </p>
                     <p class="sub-heading">Address: {{$order->address}}</p>
                     <p class="sub-heading">Phone Number: {{$order->phoneNum}} </p>
                 </div>

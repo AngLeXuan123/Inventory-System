@@ -33,6 +33,7 @@
                     <thead>
                         <tr>
                             <th>Customer Name</th>
+                            <th>Customer Email</th>
                             <th>Address</th>
                             <th>Phone Number</th>
                             <th>Total Item</th>
@@ -43,6 +44,7 @@
                     <tfoot>
                         <tr>
                             <th>Customer Name</th>
+                            <th>Customer Email</th>
                             <th>Address</th>
                             <th>Phone Number</th>
                             <th>Total Item</th>
@@ -55,6 +57,7 @@
                         @foreach($order as $orders)
                         <tr>
                             <td>{{$orders->custName}}</td>
+                            <td>{{$orders->email}}</td>
                             <td>{{$orders->address}}</td>
                             <td>{{$orders->phoneNum}}</td>
                             <td>{{$orders->orderItems->count('product_id')}}</td>

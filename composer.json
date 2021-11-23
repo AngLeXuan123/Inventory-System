@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "laraveldaily/laravel-invoices": "^2.2"
+        "laraveldaily/laravel-invoices": "^2.2",
+        "stripe/stripe-php": "^7.101"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -29,7 +30,11 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+
+        "file":[
+            "app/Helpers/Helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

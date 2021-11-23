@@ -19,5 +19,9 @@ class Order extends Model
         return $this->hasMany('App\Models\OrderItem','order_id');
     }
 
-    
+    public function paymentToken(){
+        return $this->hasOne('App\Models\PaymentTokens', 'order_id');
+    }
+
+
 }
