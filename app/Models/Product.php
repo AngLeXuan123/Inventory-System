@@ -18,5 +18,4 @@ class Product extends Model
     public function orderItems(){
         return $this->hasMany('App\Models\OrderItem','product_id');
     }
-
 }

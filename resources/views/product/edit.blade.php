@@ -1,8 +1,8 @@
 @extends('layouts.app')
-
+@section('content')
 <html>
 
-<body class="bg-primary">
+<body>
     <main>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -31,8 +31,8 @@
                                                 @endforeach
                                             </div>
                                             @endif
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Product Name</b></label>
+                                            <label for="" class="col-md-4 col-form-label text-md-right"><b>Product
+                                                    Name</b></label>
 
                                             <input type="text" name="prodName" class="form-control"
                                                 value="{{$prod->prodName}}">
@@ -40,8 +40,7 @@
                                             <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Size</b></label>
 
-                                            <input type="text" name="size" class="form-control"
-                                                value="{{$prod->size}}">
+                                            <input type="text" name="size" class="form-control" value="{{$prod->size}}">
 
                                             <label for=""
                                                 class="col-md-4 col-form-label text-md-right"><b>Price</b></label>
@@ -86,3 +85,4 @@
 </body>
 
 </html>
+@endsection

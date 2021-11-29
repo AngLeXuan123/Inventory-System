@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('phoneNum');
             $table->timestamps();
+            $table->foreignId('user_id')->references('id')->on('users');
         });
     }
 

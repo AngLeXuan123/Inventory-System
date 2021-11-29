@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.forms')
 @section('content')
 
 <body class="bg-primary">

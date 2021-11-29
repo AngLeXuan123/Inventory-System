@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+
+@section('content')
 <main>
     @if(Session::has('flash_message'))
     <div class="alert alert-success">
@@ -17,10 +20,11 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Category List</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('adminHome')}}">Dashboard</a></li>
             <li class="breadcrumb-item active">Categories</li>
         </ol>
-        <p class="lead">All Category available.<a href="{{ route('category.create') }}">Add a new one?</a></p>
+        <p class="lead">All Category available.<a href="{{ route('category.create') }}">Add a new one?</a>
+        </p>
 
         <div class="card mb-4">
             <div class="card-header">
@@ -65,3 +69,4 @@
         </div>
     </div>
 </main>
+@endsection

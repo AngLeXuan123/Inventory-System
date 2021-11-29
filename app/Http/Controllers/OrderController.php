@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\OrderItem;
 use App\Models\PaymentTokens;
@@ -43,8 +44,6 @@ class OrderController extends Controller
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    
-
     /**
      * Show the form for creating a new resource.
      *
@@ -74,14 +73,16 @@ class OrderController extends Controller
         ]);
         
         $order = new Order;
+        $users_id = Auth::id(); 
         $inv_id = Helper::invoiceIDGenerator(new Order, 'invoice_id', 5, 'INV');
         $order->invoice_id = $inv_id;
         $order->custName = $request->custName;
         $order->email = $request->email;
         $order->address = $request->address;
         $order->phoneNum = $request->phoneNum;
+        $order->user_id = $users_id;
 
-       
+
         if($order->save())
         {
             $counter = 0;
@@ -96,9 +97,9 @@ class OrderController extends Controller
                 $orderItem->save();
 
                 $product->decrement('quantity',$orderItem->order_quantity);
-
+               
                 $counter++;
-        
+                
             }
 
             $tokenCode = new PaymentTokens;

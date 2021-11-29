@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class HomeController extends Controller
 {
@@ -21,8 +24,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+     
+    public function userHome()
     {
-        return view('admin.index');
+        return view('userHome');
+    }
+
+    public function adminHome()
+    {
+        return view('adminHome');
     }
 }

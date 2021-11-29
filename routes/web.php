@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DescController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentTokensController;
+use App\Http\Controllers\Cart\CartController;
 
 
 
@@ -29,7 +31,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('desc', DescController::class);
 Route::resource('user', UserController::class);
 Route::resource('brand', BrandController::class);
@@ -45,6 +46,22 @@ Route::get('paymentForm', [PaymentTokensController::class, 'payment_form']);
 
 Route::post('stripe/{order_id}', [PaymentTokensController::class, 'stripePost'])->name('stripe.post');
 
+// user protected routes
+Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function () {
+    Route::get('/', [HomeController::class, 'userHome'])->name('userHome');
+    
+});
+
+//admin protected routes
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){
+    Route::get('/', [HomeController::class, 'adminHome'])->name('adminHome');
+});
+
+//add to cart
+Route::get('cart', [CartController::class, 'cart'])->name('product.cart');
+Route::get('add-to-cart/{id}', [CartController::class,'addToCart'])->name('add.cart');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+Route::delete('delete-cart', [CartController::class, 'remove'])->name('delete.cart');
 
 
 

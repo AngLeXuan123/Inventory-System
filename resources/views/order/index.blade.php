@@ -1,5 +1,7 @@
-
 @extends('layouts.app')
+
+@section('content')
+
 <main>
     @if(Session::has('flash_message'))
     <div class="alert alert-success">
@@ -18,7 +20,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Order List</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('adminHome')}}">Dashboard</a></li>
             <li class="breadcrumb-item active">Orders</li>
         </ol>
         <p class="lead">All Orders Made.<a href="{{ route('order.create') }}">Add a new one?</a></p>
@@ -64,11 +66,14 @@
                             <td>RM{{$orders->orderItems->sum('tAmount')}}</td>
                             <td>
                                 <form action="{{route('order.destroy', $orders->id)}}" method="POST">
-                                    <a class="btn btn-primary" href="{{ route('order.edit', $orders->id) }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-primary" href="{{ route('order.edit', $orders->id) }}"><i
+                                            class="fas fa-edit"></i></a>
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                    <a class="btn btn-success" href="{{ url('generate-invoice',$orders->id) }}"><i class="fas fa-file-invoice"></i></a>
+
+                                    <a class="btn btn-success" href="{{ url('generate-invoice',$orders->id) }}"><i
+                                            class="fas fa-file-invoice"></i></a>
                                 </form>
                             </td>
                         </tr>
@@ -81,3 +86,4 @@
         </div>
     </div>
 </main>
+@endsection

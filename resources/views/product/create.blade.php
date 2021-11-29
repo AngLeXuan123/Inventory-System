@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('content')
 
 <html>
 <body class="bg-primary">
@@ -82,3 +82,4 @@
 </body>
 
 </html>
+@endsection

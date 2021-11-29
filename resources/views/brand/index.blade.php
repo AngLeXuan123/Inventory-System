@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('content')
+
 <main>
     @if(Session::has('flash_message'))
     <div class="alert alert-success">
@@ -17,7 +19,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Brand List</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('adminHome')}}">Dashboard</a></li>
             <li class="breadcrumb-item active">Brands</li>
         </ol>
         <p class="lead">All Brand available.<a href="{{ route('brand.create') }}">Add a new one?</a></p>
@@ -48,7 +50,8 @@
                             <td>{{ $brands->brand}}</td>
                             <td>
                                 <form action="{{route('brand.destroy', $brands->id)}}" method="POST">
-                                    <a href="{{ route('brand.edit', $brands->id) }}" class="btn btn-primary">Edit Brand</a>
+                                    <a href="{{ route('brand.edit', $brands->id) }}" class="btn btn-primary">Edit
+                                        Brand</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -64,3 +67,4 @@
         </div>
     </div>
 </main>
+@endsection
