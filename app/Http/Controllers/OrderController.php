@@ -26,7 +26,10 @@ class OrderController extends Controller
     public $generateToken;
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:Order-list|Order-create|Order-edit|Order-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:Order-create', ['only' => ['create','store']]);
+        $this->middleware('permission:Order-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Order-delete', ['only' => ['destroy']]);
         $this->generateToken = new PaymentTokens;
     }
 
@@ -38,10 +41,8 @@ class OrderController extends Controller
 
     public function index()
     {
-        $order = Order::latest()->paginate(5);
-        
-        return view('order.index', compact('order'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $order = Order::where('user_id', '=', Auth::user()->id)->get();
+        return view('order.index', compact('order'));
     }
 
     /**
@@ -71,7 +72,7 @@ class OrderController extends Controller
             'address' => 'required',
             'phoneNum' => 'required|regex:/[0-9]{10}/',
         ]);
-        
+
         $order = new Order;
         $users_id = Auth::id(); 
         $inv_id = Helper::invoiceIDGenerator(new Order, 'invoice_id', 5, 'INV');
@@ -81,7 +82,6 @@ class OrderController extends Controller
         $order->address = $request->address;
         $order->phoneNum = $request->phoneNum;
         $order->user_id = $users_id;
-
 
         if($order->save())
         {

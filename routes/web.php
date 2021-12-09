@@ -11,6 +11,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentTokensController;
 use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Cart\CartpaymentController;
+use App\Http\Controllers\RoleController;
 
 
 
@@ -26,46 +28,43 @@ use App\Http\Controllers\Cart\CartController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $prod = \DB::table('products')->orderBy('created_at', 'desc')->get();
+    return view('welcome',[
+        'prod' => $prod
+    ]);
+})->name('welcome');
+
 
 Auth::routes();
 
-Route::resource('desc', DescController::class);
-Route::resource('user', UserController::class);
-Route::resource('brand', BrandController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('product', ProductController::class);
-Route::resource('order', OrderController::class);
+Route::get('/home', [HomeController::class, 'index'])->name('adminHome');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('desc', DescController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('brand', BrandController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('order', OrderController::class);
+});
 
 //invoice route
 Route::get('generate-invoice/{order_id}', [App\Http\Controllers\OrderController::class, 'invoice']);
 
-//stripe & payment form
+//stripe payment form -> manually order
 Route::get('paymentForm', [PaymentTokensController::class, 'payment_form']);
-
 Route::post('stripe/{order_id}', [PaymentTokensController::class, 'stripePost'])->name('stripe.post');
-
-// user protected routes
-Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function () {
-    Route::get('/', [HomeController::class, 'userHome'])->name('userHome');
-    
-});
-
-//admin protected routes
-Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){
-    Route::get('/', [HomeController::class, 'adminHome'])->name('adminHome');
-});
 
 //add to cart
 Route::get('cart', [CartController::class, 'cart'])->name('product.cart');
 Route::get('add-to-cart/{id}', [CartController::class,'addToCart'])->name('add.cart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('delete-cart', [CartController::class, 'remove'])->name('delete.cart');
+Route::put('update-cart/{id}', [CartController::class, 'update']);
+Route::delete('delete-cart/{id}', [CartController::class, 'remove']);
 
-
-
-
-
+//stripe payment form -> customer site (checkout)
+Route::post('selected-item-order/{user_id}', [CartpaymentController::class,'create_Order'])->name('select.item.order');
+Route::get('cust-paymentForm/{user_id}/{order_id}',[CartpaymentController::class, 'cust_payment_form'])->name('cust.payment.form');
+Route::post('cust-stripe/{user_id}/{order_id}', [CartpaymentController::class, 'cust_stripe_post'])->name('cust.stripe.post');
 
 

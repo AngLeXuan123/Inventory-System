@@ -1,22 +1,36 @@
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
-            <a class="nav-link" href="{{route('adminHome')}}">
+
+            @can('Dashboard-list')
+            <a class="nav-link" href="{{ url('/home') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
+            @endcan
 
+            @can('role-list')
+            <a class="nav-link" href="{{route('roles.index')}}">
+                <div class="sb-nav-link-icon"><i class="fas fa-user-tag"></i></i></div>
+                Manage Roles
+            </a>
+            @endcan
+
+            @can('Brand-list')
             <a class="nav-link" href="{{route('brand.index')}}">
                 <div class="sb-nav-link-icon"><i class="fab fa-angellist"></i></div>
                 Brands
             </a>
+            @endcan
 
+            @can('Category-list')
             <a class="nav-link" href="{{route('category.index')}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-align-justify"></i></div>
                 Category
             </a>
+            @endcan
 
-            <a class="nav-link" href="{{route('product.index')}}">
+            <a class="nav-link" href="{{url('/')}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></div>
                 Spare Parts
             </a>
@@ -27,13 +41,10 @@
             </a>
 
             <a class="nav-link" href="{{route('product.cart')}}">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp&nbsp Cart<span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart"></i></div>
+                Cart
             </a>
            
         </div>
-    </div>
-    <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>
-        Admin
     </div>
 </nav>

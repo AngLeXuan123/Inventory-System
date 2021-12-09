@@ -17,7 +17,12 @@ class CreateCartTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->json('cartData');
+            $table->string('productName');
+            $table->char('productSize');
+            $table->string('productBrand');
+            $table->string('productCategory');
+            $table->string('productPrice',6,2);
+            $table->integer('cartQuantity');
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users'); 

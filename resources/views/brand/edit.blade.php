@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+<title>Edit Brand</title>
 <main>
     <div class="container">
         <div class="row justify-content-center">

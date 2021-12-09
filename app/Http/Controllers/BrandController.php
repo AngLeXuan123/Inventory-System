@@ -12,7 +12,10 @@ class BrandController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:Brand-list|Brand-create|Brand-edit|Brand-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:Brand-create', ['only' => ['create','store']]);
+        $this->middleware('permission:Brand-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Brand-delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -22,9 +25,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::latest()->paginate(5);
-        return view('brand.index', compact('brand'))
-        ->with('i', (request()->input('page',1) - 1) * 5);
+        $brand = Brand::all();
+        return view('brand.index', compact('brand'));
     }
 
     /**

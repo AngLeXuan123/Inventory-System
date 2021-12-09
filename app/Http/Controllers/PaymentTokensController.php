@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\PaymentTokens;
 use App\Models\OrderItem;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Cart;
+use App\Helpers\Helper;
 use Session;
 use Stripe;
 use Carbon\Carbon;
@@ -19,6 +23,7 @@ class PaymentTokensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function payment_form(Request $request)
     {
         
@@ -64,4 +69,4 @@ class PaymentTokensController extends Controller
            
         return back();
     }
-}
+}   

@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
-
 @section('content')
+
+<title>Description List</title>
 <main>
     @if(Session::has('flash_message'))
     <div class="alert alert-success">
@@ -20,7 +20,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Description List</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{route('adminHome')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/home') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Descriptions</li>
         </ol>
         <p class="lead">All your description.<a href="{{ route('desc.create') }}">Add a new one?</a></p>
@@ -66,8 +66,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{('Total Description:')}} {{$descs -> count()}}
-                {{$descs -> links()}}
             </div>
         </div>
     </div>

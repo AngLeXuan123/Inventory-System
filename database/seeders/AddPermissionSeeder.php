@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
   
-class PermissionTableSeeder extends Seeder
+class AddPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,18 +15,18 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            'user-list',
-            'user-create',
-            'user-edit',
-            'user-delete',
-           'role-list',
-           'role-create',
-           'role-edit',
-           'role-delete',
-           'product-list',
-           'product-create',
-           'product-edit',
-           'product-delete'
+            'Brand-list',
+            'Brand-create',
+            'Brand-edit',
+            'Brand-delete',
+            'Order-list',
+            'Order-create',
+            'Order-edit',
+            'Order-delete',
+            'Category-list',
+            'Category-create',
+            'Category-edit',
+            'Category-delete'
         ];
      
         foreach ($permissions as $permission) {

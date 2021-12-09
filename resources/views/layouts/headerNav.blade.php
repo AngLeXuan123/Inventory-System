@@ -8,17 +8,22 @@
         <div class="input-group"></div>
     </form>
     <!-- Navbar-->
+
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        @if (Route::has('login'))
+        @auth
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li>
-                    <p class="dropdown-item"> {{ Auth::user()->name }}</p>
+                    <p class="dropdown-item">{{Auth::user()->name}}</p>
                 </li>
+
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
+
                 <li class="nav-item">
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();" style="color:black;">
@@ -31,5 +36,15 @@
                 </li>
             </ul>
         </li>
+        @else
     </ul>
+
+    <a href="{{ route('login') }}" style="text-decoration:none; color:white; margin-right:20px; font-size:20px">Log in</a>
+
+    @if (Route::has('register'))
+    <a href="{{ route('register') }}"style="text-decoration:none; color:white; margin-right:20px; font-size:20px">Register</a>
+    @endif
+    @endauth
+
+    @endif
 </nav>

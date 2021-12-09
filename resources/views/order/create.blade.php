@@ -2,6 +2,7 @@
 @section('content')
 
 <html>
+<title>Create New Order</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <body class="bg-primary">
@@ -78,8 +79,8 @@
                                                             </select>
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="order_quantity[]"
-                                                                class="form-control" placeholder="Quantity">
+                                                            <input type="number" name="order_quantity[]"
+                                                                class="form-control" placeholder="Quantity" min="0">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="tAmount[]" class="form-control"
@@ -126,7 +127,7 @@ $(document).ready(function() {
                         '</select>' +
                     '</td>' +
                     '<td>' +
-                        '<input type="text" name="order_quantity[]" class="form-control" placeholder="Quantity">' +
+                        '<input type="number" name="order_quantity[]" class="form-control" placeholder="Quantity" min="0">' +
                     '</td>' +
                     '<td>' +
                         '<input type="text" name="tAmount[]" class="form-control" placeholder="Total Amount" value="">' +

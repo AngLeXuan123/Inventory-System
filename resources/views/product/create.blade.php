@@ -2,6 +2,7 @@
 @section('content')
 
 <html>
+<title>Create New Product</title>
 <body class="bg-primary">
     <main>
         <div id="layoutAuthentication">

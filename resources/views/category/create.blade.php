@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+<title>Create New Category</title>
 <main>
     <div class="container">
         <div class="row justify-content-center">

@@ -11,7 +11,10 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:Category-list|Category-create|Category-edit|Category-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:Category-create', ['only' => ['create','store']]);
+        $this->middleware('permission:Category-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Category-delete', ['only' => ['destroy']]);
     }
     
     /**
@@ -21,9 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cat = Category::latest()->paginate(5);
-        return view('category.index', compact('cat'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $cat = Category::all();
+        return view('category.index', compact('cat'));
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Cart;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Cart\CartController;
 use Session;
@@ -16,7 +17,10 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:product-create', ['only' => ['create','store']]);
+        $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
     
     /**
@@ -26,9 +30,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prod = Product::latest()->paginate(5);
-        return view('product.index', compact('prod'))
-        ->with('i',(request()->input('page', 1) - 1) * 5);
+        $prod = Product::orderBy('created_at', 'asc')->get();
+        return view('welcome',[
+            'prod' => $prod
+        ]);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <html>
-
+<title>Product Edit</title>
 <body>
     <main>
         <div id="layoutAuthentication">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
 
+<title>Create New Description</title>
 <main>
     <div class="container">
         <div class="row justify-content-center">
@@ -20,7 +20,7 @@
                             @endif
 
                             @if($errors->any())
-                            <div>
+                            <div class="alert alert-danger">
                                 @foreach($errors->all() as $error)
                                 <p>{{$error}}</p>
                                 @endforeach

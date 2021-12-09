@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <html>
-
+<title>Edit Order</title>
 <body class="bg-primary">
     <main>
         <div id="layoutAuthentication">
@@ -31,14 +31,14 @@
                                                 @endforeach
                                             </div>
                                             @endif
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Customer Name</b></label>
+                                            <label for="" class="col-md-4 col-form-label text-md-right"><b>Customer
+                                                    Name</b></label>
 
                                             <input type="text" name="custName" class="form-control"
                                                 value="{{$order->custName}}">
 
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Customer Email</b></label>
+                                            <label for="" class="col-md-4 col-form-label text-md-right"><b>Customer
+                                                    Email</b></label>
 
                                             <input type="text" name="email" class="form-control"
                                                 value="{{$order->email}}">
@@ -49,36 +49,38 @@
                                             <input type="text" name="address" class="form-control"
                                                 value="{{$order->address}}">
 
-                                            <label for=""
-                                                class="col-md-4 col-form-label text-md-right"><b>Phone Number</b></label>
+                                            <label for="" class="col-md-4 col-form-label text-md-right"><b>Phone
+                                                    Number</b></label>
 
                                             <input type="text" name="phoneNum" class="form-control"
                                                 value="{{$order->phoneNum}}">
 
-                                                <table class="table table-bordered">
+                                            <table class="table table-bordered">
                                                 <thead>
                                                     <th>Product Name</th>
                                                     <th>Quantity</th>
                                                     <th>Total Amount</th>
                                                 </thead>
-</br>
+                                                </br>
                                                 <tbody>
                                                     @foreach($orderItems as $value)
                                                     <tr>
                                                         <td>
-                                                            <input type="text" name="product_id[]"
-                                                                    class="form-control" placeholder="Product Name" value="{{$value->product->prodName}}" readonly>
-                                                        </td> 
+                                                            <input type="text" name="product_id[]" class="form-control"
+                                                                placeholder="Product Name"
+                                                                value="{{$value->product->prodName}}" readonly>
+                                                        </td>
                                                         <td>
                                                             <input type="text" name="order_quantity[]"
-                                                                class="form-control" placeholder="Quantity" value="{{$value->order_quantity}}">
+                                                                class="form-control" placeholder="Quantity"
+                                                                value="{{$value->order_quantity}}">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="tAmount[]" class="form-control"
                                                                 placeholder="Total Amount" value="{{$value->tAmount}}">
-                                                        </td>  
+                                                        </td>
                                                     </tr>
-                                                 @endforeach
+                                                    @endforeach
                                                 </tbody>
                                             </table>
 

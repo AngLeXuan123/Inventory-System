@@ -22,10 +22,8 @@ class DescController extends Controller
      */
     public function index()
     {
-        //$descs = Desc::where('user_id','=',Auth::user()->id)->paginate(5);
-        $descs = Desc::latest()->paginate(5);
-        return view('desc.index',compact('descs'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        $descs = Desc::where('user_id','=',Auth::user()->id)->get();
+        return view('desc.index',compact('descs'));
         
     }
 
@@ -48,21 +46,22 @@ class DescController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'title' => 'required|alpha',
-            'desc' => 'required|alpha',
+            'title' => 'required',
+            'desc' => 'required',
         ]);
         
         //store created task into database
         
-        $descs = new Desc();
-        $descs -> title = $request -> title;
-        $descs -> desc = $request -> desc;
+        $descs = new Desc;
+        $user_id = Auth::id(); 
+        $descs->user_id = $user_id;
+        $descs->desc = $request->desc;
+        $descs->title = $request->title;
+        $descs->save();
 
-        if(Auth::user() -> desc() -> save($descs)){
-            Session::flash('flash_message','Description is successfully created!');
-            return redirect()->route('desc.index');
-        }
-
+        Session::flash('flash_message','Description is successfully created!');
+        return redirect()->route('desc.index');
+        
     }
 
     /**
@@ -124,7 +123,6 @@ class DescController extends Controller
         $descs->delete();
     
         Session::flash('flash_message', 'Description successfully deleted!');
-    
         return redirect()->route('desc.index');
     }
 }

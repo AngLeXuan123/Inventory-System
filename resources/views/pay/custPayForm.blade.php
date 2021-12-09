@@ -25,20 +25,19 @@
                                     <div class="card-body">
                                         @if (Session::has('success'))
                                         <div class="alert alert-success text-center">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                             <p>{{ Session::get('success') }}</p>
                                         </div>
                                         @endif
-                                        <form role="form" action="{{ route('stripe.post', $order->id) }}" method="post"
-                                            class="require-validation" data-cc-on-file="false"
+                                        <form role="form" action="{{route('cust.stripe.post',['user_id'=>$userCart,'order_id'=>$orderCart])}}"
+                                            method="post" class="require-validation" data-cc-on-file="false"
                                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                                             @csrf
 
                                             <div class='form-row row'>
                                                 <div class='col-xs-12 form-group required'>
                                                     <label class='control-label'>Total Amount</label>
-                                                    <input class='form-control' size='4' type='text'
-                                                        value="RM{{$orderItems->sum('tAmount')}}" readonly>
+                                                    <input class='form-control' size='4' type='text' value="RM{{$cartItem->sum('tAmount')}}"
+                                                        readonly>
                                                 </div>
                                             </div>
 
@@ -51,6 +50,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class='form-row row'>
                                                 <div class='col-xs-12 form-group required'>
                                                     <label class='control-label'>Card Number</label> <input
@@ -58,6 +58,7 @@
                                                         type='text'>
                                                 </div>
                                             </div>
+
                                             <div class='form-row row'>
                                                 <div class='col-xs-12 col-md-4 form-group cvc required'>
                                                     <label class='control-label'>CVC</label> <input autocomplete='off'
