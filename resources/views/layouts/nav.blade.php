@@ -9,13 +9,6 @@
             </a>
             @endcan
 
-            @can('role-list')
-            <a class="nav-link" href="{{route('roles.index')}}">
-                <div class="sb-nav-link-icon"><i class="fas fa-user-tag"></i></i></div>
-                Manage Roles
-            </a>
-            @endcan
-
             @can('Brand-list')
             <a class="nav-link" href="{{route('brand.index')}}">
                 <div class="sb-nav-link-icon"><i class="fab fa-angellist"></i></div>

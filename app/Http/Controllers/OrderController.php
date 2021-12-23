@@ -17,8 +17,7 @@ use Session;
 use DB;
 use PDF;
 use Carbon\Carbon;
-
-
+use Spatie\Permission\Models\Role;
 
 class OrderController extends Controller
 {
@@ -41,7 +40,15 @@ class OrderController extends Controller
 
     public function index()
     {
-        $order = Order::where('user_id', '=', Auth::user()->id)->get();
+
+        $user = User::find(Auth::user()->id);
+        
+        if($user->role == 'admin'){
+            $order = Order::all();
+        }else{
+            $order = Order::where('user_id', '=', Auth::user()->id)->get();
+        }
+      
         return view('order.index', compact('order'));
     }
 
@@ -65,6 +72,7 @@ class OrderController extends Controller
     
     public function store(Request $request)
     {
+        
         $this->validate($request,[
             'product_id' => 'required',
             'custName' => 'required|regex:/^[\pL\s\-]+$/u',
@@ -169,12 +177,13 @@ class OrderController extends Controller
         $counter = 0;
         foreach($orderItems as $orderItem){
             $item = $orderItem;
+            $product = Product::find($orderItem->product_id);
             $item->order_quantity = $request->order_quantity[$counter];
-            $item->tAmount = $request->tAmount[$counter];
+            $item->tAmount = $product->price * $item->order_quantity;
             $item->update();
             $counter++;
         }
-        
+
         Session::flash('flash_message','Order successfully updated!');
         return redirect()->route('order.index');
     }
@@ -191,10 +200,10 @@ class OrderController extends Controller
         $order = Order::find($id);
         $orderItems = $order->orderItems;
         
-        foreach($orderItems as $orderItem){
-            $product = Product::find($orderItem->product_id);
-            $product->increment('quantity',$orderItem->order_quantity);
-        }
+        // foreach($orderItems as $orderItem){
+        //     $product = Product::find($orderItem->product_id);
+        //     $product->increment('quantity',$orderItem->order_quantity);
+        // }
         
         $order->delete();
         Session::flash('flash_message','Order successfully deleted!');

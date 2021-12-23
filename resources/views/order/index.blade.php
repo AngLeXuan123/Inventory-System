@@ -7,6 +7,10 @@
     <div class="alert alert-success">
         {{ Session::get('flash_message') }}
     </div>
+    @elseif(Session('error'))
+    <div class="alert alert-danger">
+        {{session('error')}}
+    </div>
     @endif
 
     @if($errors->any())
@@ -79,7 +83,7 @@
 
                                     @csrf
                                     @method('DELETE')
-                                    
+
                                     @can('Order-delete')
                                     <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                     @endcan

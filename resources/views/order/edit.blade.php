@@ -59,7 +59,6 @@
                                                 <thead>
                                                     <th>Product Name</th>
                                                     <th>Quantity</th>
-                                                    <th>Total Amount</th>
                                                 </thead>
                                                 </br>
                                                 <tbody>
@@ -74,10 +73,6 @@
                                                             <input type="text" name="order_quantity[]"
                                                                 class="form-control" placeholder="Quantity"
                                                                 value="{{$value->order_quantity}}">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="tAmount[]" class="form-control"
-                                                                placeholder="Total Amount" value="{{$value->tAmount}}">
                                                         </td>
                                                     </tr>
                                                     @endforeach
